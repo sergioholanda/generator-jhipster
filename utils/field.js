@@ -190,7 +190,14 @@ function prepareFieldForTemplates(entityWithConfig, field, generator) {
       field.jpaGeneratedValue = false;
       field.readonly = true;
     } else {
-      const defaultGenerationType = entityWithConfig.prodDatabaseType === 'mysql' ? 'identity' : 'sequence';
+      let defaultGenerationType;
+      if (entityWithConfig.prodDatabaseType === 'mysql') {
+        defaultGenerationType = 'identity';
+      } else if (entityWithConfig.prodDatabaseType === 'postgresql') {
+        defaultGenerationType = 'sequencePerTable';
+      } else {
+        defaultGenerationType = 'sequence';
+      }
       field.jpaGeneratedValue = field.jpaGeneratedValue || field.fieldType === 'Long' ? defaultGenerationType : true;
       field.readonly = true;
       if (field.jpaGeneratedValue === 'identity') {
