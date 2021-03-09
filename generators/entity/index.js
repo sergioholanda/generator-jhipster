@@ -552,6 +552,8 @@ class EntityGenerator extends BaseBlueprintGenerator {
           } else if (fieldType === 'LocalDate') {
             entity.fieldsContainLocalDate = true;
             entity.fieldsContainDate = true;
+          } else if (fieldType === 'LocalTime') {
+            entity.fieldsContainLocalTime = true;
           } else if (fieldType === 'BigDecimal') {
             entity.fieldsContainBigDecimal = true;
           } else if (fieldType === 'UUID') {

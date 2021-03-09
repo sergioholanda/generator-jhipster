@@ -33,6 +33,7 @@ const CommonDBTypes = {
   ENUM: 'Enum',
   BOOLEAN: 'Boolean',
   LOCAL_DATE: 'LocalDate',
+  LOCAL_TIME: 'LocalTime',
   ZONED_DATE_TIME: 'ZonedDateTime',
   BLOB: 'Blob',
   ANY_BLOB: 'AnyBlob',
@@ -52,6 +53,7 @@ const CommonDBValidations = {
   Enum: new Set([REQUIRED, UNIQUE]),
   Boolean: new Set([REQUIRED, UNIQUE]),
   LocalDate: new Set([REQUIRED, UNIQUE]),
+  LocalTime: new Set([REQUIRED, UNIQUE]),
   ZonedDateTime: new Set([REQUIRED, UNIQUE]),
   Blob: new Set([REQUIRED, UNIQUE, MINBYTES, MAXBYTES]),
   AnyBlob: new Set([REQUIRED, UNIQUE, MINBYTES, MAXBYTES]),
@@ -121,7 +123,7 @@ function getIsType(databaseType, callback) {
       callback && callback();
       throw new Error(
         "The passed database type must either be 'sql', 'mysql', 'mariadb', 'postgresql'," +
-          " 'oracle', 'mssql', 'mongodb', 'couchbase', 'neo4j' or 'cassandra'"
+        " 'oracle', 'mssql', 'mongodb', 'couchbase', 'neo4j' or 'cassandra'"
       );
   }
   return isType;

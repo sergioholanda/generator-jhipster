@@ -518,6 +518,10 @@ function askForField() {
           name: 'LocalDate',
         },
         {
+          value: 'LocalTime',
+          name: 'LocalTime',
+        },
+        {
           value: 'Instant',
           name: 'Instant',
         },
@@ -653,6 +657,10 @@ function askForField() {
         {
           value: 'LocalDate',
           name: 'LocalDate',
+        },
+        {
+          value: 'LocalTime',
+          name: 'LocalTime',
         },
         {
           value: 'Instant',
@@ -1120,8 +1128,8 @@ function logFieldsAndRelationships() {
       }
       this.log(
         chalk.red(field.fieldName) +
-          chalk.white(` (${field.fieldType}${field.fieldTypeBlobContent ? ` ${field.fieldTypeBlobContent}` : ''}) `) +
-          chalk.cyan(validationDetails.join(' '))
+        chalk.white(` (${field.fieldType}${field.fieldTypeBlobContent ? ` ${field.fieldTypeBlobContent}` : ''}) `) +
+        chalk.cyan(validationDetails.join(' '))
       );
     });
     this.log();

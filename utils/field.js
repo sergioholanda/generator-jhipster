@@ -96,7 +96,7 @@ const generateFakeDataForField = (field, faker, changelogDate, type = 'csv') => 
       max: field.fieldValidateRulesMax ? parseInt(field.fieldValidateRulesMax, 10) : undefined,
       min: field.fieldValidateRulesMin ? parseInt(field.fieldValidateRulesMin, 10) : undefined,
     });
-  } else if (['Instant', 'ZonedDateTime', 'LocalDate'].includes(field.fieldType)) {
+  } else if (['Instant', 'ZonedDateTime', 'LocalDate', 'LocalTime'].includes(field.fieldType)) {
     // Iso: YYYY-MM-DDTHH:mm:ss.sssZ
     const isoDate = faker.date.recent(1, changelogDate).toISOString();
     if (field.fieldType === 'LocalDate') {
@@ -319,6 +319,7 @@ function fieldIsEnum(fieldType) {
     'Double',
     'BigDecimal',
     'LocalDate',
+    'LocalTime',
     'Instant',
     'ZonedDateTime',
     'Duration',

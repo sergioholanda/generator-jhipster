@@ -24,6 +24,8 @@ import java.math.BigDecimal;
 import java.time.Instant;
 <%_ } if (fieldsContainLocalDate === true) { _%>
 import java.time.LocalDate;
+<%_ } if (fieldsContainLocalTime === true) { _%>
+import java.time.LocalTime;
 <%_ } if (fieldsContainZonedDateTime === true) { _%>
 import java.time.ZonedDateTime;
 <%_ } if (fieldsContainDuration === true) { _%>
@@ -37,43 +39,43 @@ import org.springframework.stereotype.Service;
 
 import <%= packageName %>.domain.<%= asEntity(entityClass) %>;
 <%_ Object.keys(uniqueEnums).forEach(function(element) { _%>
-import <%= packageName %>.domain.enumeration.<%= element %>;
+    import <%= packageName %>.domain.enumeration.<%= element %>;
 <%_ }); _%>
 import <%= packageName %>.service.ColumnConverter;
 
 import io.r2dbc.spi.Row;
 
 /**
- * Converter between {@link Row} to {@link <%= asEntity(entityClass) %>}, with proper type conversions.
- */
+* Converter between {@link Row} to {@link <%= asEntity(entityClass) %>}, with proper type conversions.
+*/
 @Service
 public class <%= entityClass %>RowMapper implements BiFunction<Row, String, <%= asEntity(entityClass) %>> {
-    private final ColumnConverter converter;
-    public <%= entityClass %>RowMapper(ColumnConverter converter) {
-        this.converter = converter;
-    }
+private final ColumnConverter converter;
+public <%= entityClass %>RowMapper(ColumnConverter converter) {
+this.converter = converter;
+}
 
-    /**
-     * Take a {@link Row} and a column prefix, and extract all the fields.
-     * @return the {@link <%= asEntity(entityClass) %>} stored in the database.
-     */
-    @Override
-    public <%= asEntity(entityClass) %> apply(Row row, String prefix) {
-        <%= asEntity(entityClass) %> entity = new <%= asEntity(entityClass) %>();
-        <%_ fields.forEach(function(field) {
-            let fieldType = field.fieldType;
-            if (field.fieldTypeBlobContent === 'text') {
-                fieldType = 'String';
-            }
-            if (field.fieldType === 'byte[]' && field.fieldTypeBlobContent !== 'text') { _%>
-        entity.set<%= field.fieldInJavaBeanMethod %>ContentType(converter.fromRow(row, prefix + "_<%= field.fieldNameAsDatabaseColumn %>_content_type", String.class));
-            <%_ } _%>
-        entity.set<%= field.fieldInJavaBeanMethod %>(converter.fromRow(row, prefix + "_<%= field.fieldNameAsDatabaseColumn %>", <%= fieldType %>.class));
-        <%_ }); _%>
-        <%_ reactiveRegularEagerRelations.forEach(function(rel) { _%>
-        entity.set<%= rel.relationshipNameCapitalized %>Id(converter.fromRow(row, prefix + "_<%= getColumnName(rel.relationshipName) %>_id", <%= rel.otherEntity.primaryKey.type %>.class));
-        <%_ }); _%>
-        return entity;
+/**
+* Take a {@link Row} and a column prefix, and extract all the fields.
+* @return the {@link <%= asEntity(entityClass) %>} stored in the database.
+*/
+@Override
+public <%= asEntity(entityClass) %> apply(Row row, String prefix) {
+<%= asEntity(entityClass) %> entity = new <%= asEntity(entityClass) %>();
+<%_ fields.forEach(function(field) {
+    let fieldType = field.fieldType;
+    if (field.fieldTypeBlobContent === 'text') {
+        fieldType = 'String';
     }
+if (field.fieldType === 'byte[]' && field.fieldTypeBlobContent !== 'text') { _%>
+    entity.set<%= field.fieldInJavaBeanMethod %>ContentType(converter.fromRow(row, prefix + "_<%= field.fieldNameAsDatabaseColumn %>_content_type", String.class));
+<%_ } _%>
+entity.set<%= field.fieldInJavaBeanMethod %>(converter.fromRow(row, prefix + "_<%= field.fieldNameAsDatabaseColumn %>", <%= fieldType %>.class));
+<%_ }); _%>
+<%_ reactiveRegularEagerRelations.forEach(function(rel) { _%>
+    entity.set<%= rel.relationshipNameCapitalized %>Id(converter.fromRow(row, prefix + "_<%= getColumnName(rel.relationshipName) %>_id", <%= rel.otherEntity.primaryKey.type %>.class));
+<%_ }); _%>
+return entity;
+}
 
 }

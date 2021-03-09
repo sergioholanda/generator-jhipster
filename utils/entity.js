@@ -38,6 +38,7 @@ const BASE_TEMPLATE_DATA = {
   fieldsContainZonedDateTime: false,
   fieldsContainDuration: false,
   fieldsContainLocalDate: false,
+  fieldsContainLocalTime: false,
   fieldsContainBigDecimal: false,
   fieldsContainBlob: false,
   fieldsContainImageBlob: false,

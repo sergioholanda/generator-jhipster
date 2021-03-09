@@ -217,10 +217,10 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
     } catch (e) {
       this.log(
         chalk.yellow('\nUnable to find ') +
-          fullPath +
-          chalk.yellow(' or missing required jhipster-needle. LANGUAGE constant not updated with languages: ') +
-          languages +
-          chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
+        fullPath +
+        chalk.yellow(' or missing required jhipster-needle. LANGUAGE constant not updated with languages: ') +
+        languages +
+        chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
       );
       this.debug('Error:', e);
     }
@@ -254,10 +254,10 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
     } catch (e) {
       this.log(
         chalk.yellow('\nUnable to find ') +
-          fullPath +
-          chalk.yellow(' or missing required jhipster-needle. LANGUAGE constant not updated with languages: ') +
-          languages +
-          chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
+        fullPath +
+        chalk.yellow(' or missing required jhipster-needle. LANGUAGE constant not updated with languages: ') +
+        languages +
+        chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
       );
       this.debug('Error:', e);
     }
@@ -288,10 +288,10 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
     } catch (e) {
       this.log(
         chalk.yellow('\nUnable to find ') +
-          fullPath +
-          chalk.yellow(' or missing required jhipster-needle. LANGUAGE constant not updated with languages: ') +
-          languages +
-          chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
+        fullPath +
+        chalk.yellow(' or missing required jhipster-needle. LANGUAGE constant not updated with languages: ') +
+        languages +
+        chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
       );
       this.debug('Error:', e);
     }
@@ -325,10 +325,10 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
     } catch (e) {
       this.log(
         chalk.yellow('\nUnable to find ') +
-          fullPath +
-          chalk.yellow(' or missing required jhipster-needle. Language pipe not updated with languages: ') +
-          languages +
-          chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
+        fullPath +
+        chalk.yellow(' or missing required jhipster-needle. Language pipe not updated with languages: ') +
+        languages +
+        chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
       );
       this.debug('Error:', e);
     }
@@ -345,10 +345,9 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
       let content = 'groupBy: [\n';
       // prettier-ignore
       languages.forEach((language, i) => {
-                content += `                    { pattern: "./${this.CLIENT_MAIN_SRC_DIR}i18n/${language}/*.json", fileName: "./i18n/${language}.json" }${
-                    i !== languages.length - 1 ? ',' : ''
-                }\n`;
-            });
+        content += `                    { pattern: "./${this.CLIENT_MAIN_SRC_DIR}i18n/${language}/*.json", fileName: "./i18n/${language}.json" }${i !== languages.length - 1 ? ',' : ''
+          }\n`;
+      });
       content +=
         '                    // jhipster-needle-i18n-language-webpack - JHipster will add/remove languages in this array\n' +
         '                ]';
@@ -364,10 +363,10 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
     } catch (e) {
       this.log(
         chalk.yellow('\nUnable to find ') +
-          fullPath +
-          chalk.yellow(' or missing required jhipster-needle. Webpack language task not updated with languages: ') +
-          languages +
-          chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
+        fullPath +
+        chalk.yellow(' or missing required jhipster-needle. Webpack language task not updated with languages: ') +
+        languages +
+        chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
       );
       this.debug('Error:', e);
     }
@@ -384,10 +383,9 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
       let content = 'groupBy: [\n';
       // prettier-ignore
       languages.forEach((language, i) => {
-                content += `                    { pattern: "./${this.CLIENT_MAIN_SRC_DIR}i18n/${language}/*.json", fileName: "./i18n/${language}.json" }${
-                    i !== languages.length - 1 ? ',' : ''
-                }\n`;
-            });
+        content += `                    { pattern: "./${this.CLIENT_MAIN_SRC_DIR}i18n/${language}/*.json", fileName: "./i18n/${language}.json" }${i !== languages.length - 1 ? ',' : ''
+          }\n`;
+      });
       content +=
         '                    // jhipster-needle-i18n-language-webpack - JHipster will add/remove languages in this array\n' +
         '                ]';
@@ -403,10 +401,10 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
     } catch (e) {
       this.log(
         chalk.yellow('\nUnable to find ') +
-          fullPath +
-          chalk.yellow(' or missing required jhipster-needle. Webpack language task not updated with languages: ') +
-          languages +
-          chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
+        fullPath +
+        chalk.yellow(' or missing required jhipster-needle. Webpack language task not updated with languages: ') +
+        languages +
+        chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
       );
       this.debug('Error:', e);
     }
@@ -442,10 +440,10 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
     } catch (e) {
       this.log(
         chalk.yellow('\nUnable to find ') +
-          fullPath +
-          chalk.yellow(' or missing required jhipster-needle. DayJS language task not updated with languages: ') +
-          languages +
-          chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
+        fullPath +
+        chalk.yellow(' or missing required jhipster-needle. DayJS language task not updated with languages: ') +
+        languages +
+        chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
       );
       this.debug('Error:', e);
     }
@@ -915,7 +913,7 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
         if (['byte[]', 'ByteBuffer'].includes(fieldType) && field.fieldTypeBlobContent !== 'text') {
           variablesWithTypes.push(`${fieldName}ContentType?: ${nullable ? 'string | null' : 'string'}`);
         }
-      } else if (['LocalDate', 'Instant', 'ZonedDateTime'].includes(fieldType)) {
+      } else if (['LocalDate', 'LocalTime', 'Instant', 'ZonedDateTime'].includes(fieldType)) {
         tsType = customDateType;
       }
       if (nullable) {
@@ -1065,7 +1063,7 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
    * @param {string} fieldType
    */
   getSpecificationBuilder(fieldType) {
-    if (['Integer', 'Long', 'Float', 'Double', 'BigDecimal', 'LocalDate', 'ZonedDateTime', 'Instant', 'Duration'].includes(fieldType)) {
+    if (['Integer', 'Long', 'Float', 'Double', 'BigDecimal', 'LocalDate', 'LocalTime', 'ZonedDateTime', 'Instant', 'Duration'].includes(fieldType)) {
       return 'buildRangeSpecification';
     }
     if (fieldType === 'String') {
@@ -1478,10 +1476,10 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
     } catch (e) {
       this.log(
         chalk.yellow('\nUnable to find ') +
-          fullPath +
-          chalk.yellow(' or missing required jhipster-needle. Language pipe not updated with languages: ') +
-          languages +
-          chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
+        fullPath +
+        chalk.yellow(' or missing required jhipster-needle. Language pipe not updated with languages: ') +
+        languages +
+        chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
       );
       this.debug('Error:', e);
     }
@@ -1512,10 +1510,10 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
     } catch (e) {
       this.log(
         chalk.yellow('\nUnable to find ') +
-          fullPath +
-          chalk.yellow(' or missing required jhipster-needle. Language pipe not updated with languages: ') +
-          languages +
-          chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
+        fullPath +
+        chalk.yellow(' or missing required jhipster-needle. Language pipe not updated with languages: ') +
+        languages +
+        chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
       );
       this.debug('Error:', e);
     }
@@ -1527,10 +1525,9 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
       let content = 'groupBy: [\n';
       // prettier-ignore
       languages.forEach((language, i) => {
-                content += `          { pattern: './${this.CLIENT_MAIN_SRC_DIR}i18n/${language}/*.json', fileName: './i18n/${language}.json' }${
-                    i !== languages.length - 1 ? ',' : ''
-                }\n`;
-            });
+        content += `          { pattern: './${this.CLIENT_MAIN_SRC_DIR}i18n/${language}/*.json', fileName: './i18n/${language}.json' }${i !== languages.length - 1 ? ',' : ''
+          }\n`;
+      });
       content += '          // jhipster-needle-i18n-language-webpack - JHipster will add/remove languages in this array\n        ]';
 
       jhipsterUtils.replaceContent(
@@ -1544,10 +1541,10 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
     } catch (e) {
       this.log(
         chalk.yellow('\nUnable to find ') +
-          fullPath +
-          chalk.yellow(' or missing required jhipster-needle. Webpack language task not updated with languages: ') +
-          languages +
-          chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
+        fullPath +
+        chalk.yellow(' or missing required jhipster-needle. Webpack language task not updated with languages: ') +
+        languages +
+        chalk.yellow(' since block was not found. Check if you have enabled translation support.\n')
       );
       this.debug('Error:', e);
     }
@@ -1649,9 +1646,9 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
     const liquibaseFakeData = oauth2
       ? []
       : [
-          { id: userIdType === 'Long' ? 1 : user.primaryKey.fields[0].generateFakeData() },
-          { id: userIdType === 'Long' ? 2 : user.primaryKey.fields[0].generateFakeData() },
-        ];
+        { id: userIdType === 'Long' ? 1 : user.primaryKey.fields[0].generateFakeData() },
+        { id: userIdType === 'Long' ? 2 : user.primaryKey.fields[0].generateFakeData() },
+      ];
     user.liquibaseFakeData = liquibaseFakeData;
     this.configOptions.sharedLiquibaseFakeData.User = liquibaseFakeData;
   }

@@ -89,7 +89,7 @@ module.exports = class extends BaseGenerator {
           const fields =
             databaseChangelog.type === 'entity-new'
               ? // generate id fields first to improve reproducibility
-                [...this.fields.filter(f => f.id), ...this.fields.filter(f => !f.id)]
+              [...this.fields.filter(f => f.id), ...this.fields.filter(f => !f.id)]
               : [...this.allFields.filter(f => f.id), ...this.addedFields.filter(f => !f.id)];
           fields.forEach((field, idx) => {
             if (field.derived) {
