@@ -106,6 +106,8 @@ import java.nio.ByteBuffer;
 import java.time.Instant;
 <%_ } if (fieldsContainLocalDate === true) { _%>
 import java.time.LocalDate;
+<%_ } if (fieldsContainLocalTime === true) { _%>
+import java.time.LocalTime;
 <%_ } if (fieldsContainZonedDateTime === true) { _%>
 import java.time.ZonedDateTime;
 <%_ } if (fieldsContainDuration === true) { _%>
@@ -231,7 +233,7 @@ public class <%= asEntity(entityClass) %> implements Serializable {
     @Type(type = "org.hibernate.type.TextType")
         <%_ }
         }
-        if (['Instant', 'ZonedDateTime', 'LocalDate', 'Duration'].includes(fieldType)) { _%>
+        if (['Instant', 'ZonedDateTime', 'LocalDate', 'LocalTime', 'Duration'].includes(fieldType)) { _%>
     @Column(name = "<%- fieldNameAsDatabaseColumn %>"<% if (required) { %>, nullable = false<% } %><% if (unique) { %>, unique = true<% } %>)
         <%_ } else if (fieldType === 'BigDecimal') { _%>
     @Column(name = "<%- fieldNameAsDatabaseColumn %>", precision = 21, scale = 2<% if (required) { %>, nullable = false<% } %><% if (unique) { %>, unique = true<% } %>)

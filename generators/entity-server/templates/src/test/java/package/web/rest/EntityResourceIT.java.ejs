@@ -164,9 +164,10 @@ import java.time.Duration;<% } %><% if (fieldsContainLocalDate === true) { %>
 import java.time.LocalDate;<% } %><% if (fieldsContainInstant === true || fieldsContainZonedDateTime === true) { %>
 import java.time.Instant;<% } %><% if (fieldsContainZonedDateTime === true) { %>
 import java.time.ZonedDateTime;
-import java.time.ZoneOffset;<% } %><% if (fieldsContainLocalDate === true || fieldsContainZonedDateTime === true) { %>
+import java.time.ZoneOffset;<% } %><% if (fieldsContainLocalDate === true || fieldsContainLocalTime === true || fieldsContainZonedDateTime === true) { %>
 import java.time.ZoneId;<% } %><% if (fieldsContainInstant === true) { %>
-import java.time.temporal.ChronoUnit;<% } %>
+import java.time.temporal.ChronoUnit;<% } %><% if (fieldsContainLocalTime === true) { %>
+import java.time.LocalTime;<% } %>
 <%_ if (fieldsContainOwnerManyToMany) { _%>
 import java.util.ArrayList;
 <%_ } _%>
@@ -242,7 +243,7 @@ class <%= entityClass %>ResourceIT <% if (databaseType === 'cassandra') { %>exte
     const updatedValueName = 'UPDATED_' + fields[idx].fieldNameUnderscored.toUpperCase();
     const smallerValueName = 'SMALLER_' + fields[idx].fieldNameUnderscored.toUpperCase();
     const needsSmallerValueName = jpaMetamodelFiltering && isFilterableType(fields[idx].fieldType)
-            && ['BigDecimal', 'Byte', 'Double', 'Duration', 'Float', 'Short', 'Integer', 'Long', 'LocalDate', 'ZonedDateTime'].includes(fields[idx].fieldType);
+            && ['BigDecimal', 'Byte', 'Double', 'Duration', 'Float', 'Short', 'Integer', 'Long', 'LocalDate', 'LocalTime', 'ZonedDateTime'].includes(fields[idx].fieldType);
 
     let defaultValue = 1;
     let updatedValue = 2;
@@ -365,8 +366,15 @@ class <%= entityClass %>ResourceIT <% if (databaseType === 'cassandra') { %>exte
 
     private static final LocalDate <%= defaultValueName %> = LocalDate.ofEpochDay(0L);
     private static final LocalDate <%= updatedValueName %> = LocalDate.now(ZoneId.systemDefault());
+    <%_ if (needsSmallerValueName) { _%>
+        private static final LocalDate <%= smallerValueName %> = LocalDate.ofEpochDay(-1L);
+    <%_ } _%>
+    <%_ } else if (fieldType === 'LocalTime') { _%>
+
+    private static final LocalTime <%= defaultValueName %> = LocalTime.of(0, 0, 0);
+    private static final LocalTime <%= updatedValueName %> = LocalTime.now(ZoneId.systemDefault());
         <%_ if (needsSmallerValueName) { _%>
-    private static final LocalDate <%= smallerValueName %> = LocalDate.ofEpochDay(-1L);
+    private static final LocalTime <%= smallerValueName %> = LocalTime.of(-1, -1, -1);
         <%_ } _%>
     <%_ } else if (fieldType === 'Instant') { _%>
 
@@ -1073,7 +1081,7 @@ class <%= entityClass %>ResourceIT <% if (databaseType === 'cassandra') { %>exte
             }
             // the range criteria
             if (['BigDecimal', 'Byte', 'Double', 'Duration', 'Float', 'Short',
-                 'Integer', 'Long', 'LocalDate', 'ZonedDateTime'].includes(searchBy.fieldType)) {
+                 'Integer', 'Long', 'LocalDate', 'LocalTime', 'ZonedDateTime'].includes(searchBy.fieldType)) {
               var defaultValue = 'DEFAULT_' + searchBy.fieldNameUnderscored.toUpperCase();
               var biggerValue = 'UPDATED_' + searchBy.fieldNameUnderscored.toUpperCase();
               var smallerValue = 'SMALLER_' + searchBy.fieldNameUnderscored.toUpperCase();
@@ -1081,7 +1089,7 @@ class <%= entityClass %>ResourceIT <% if (databaseType === 'cassandra') { %>exte
                   // if maximum is specified the updated variable is smaller than the default one!
                   if (searchBy.fieldType === 'BigDecimal') {
                       biggerValue = '(' + defaultValue + '.add(BigDecimal.ONE))';
-                  } else if (['Duration', 'LocalDate', 'ZonedDateTime'].includes(searchBy.fieldType)) {
+                  } else if (['Duration', 'LocalDate', 'LocalTime', 'ZonedDateTime'].includes(searchBy.fieldType)) {
                       biggerValue = '(' + defaultValue + '.plus(1, ChronoUnit.DAYS))';
                   } else {
                       biggerValue = '(' + defaultValue + ' + 1)';

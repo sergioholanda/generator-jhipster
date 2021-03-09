@@ -306,6 +306,10 @@ module.exports = class extends BaseGenerator {
             return 'date';
         }
 
+        if (fieldType === 'LocalTime') {
+            return 'time without time zone';
+        }
+
         if (fieldType === 'Instant') {
             // eslint-disable-next-line no-template-curly-in-string
             return '${datetimeType}';

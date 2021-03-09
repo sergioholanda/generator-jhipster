@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS <%= entityInstance %> (
     <%= fieldName %> timestamp,<% } else if (fieldType === 'ZonedDateTime') { %>
     <%= fieldName %> tuple<timestamp,varchar>,<% } else if (fieldType === 'Boolean') { %>
     <%= fieldName %> boolean,<% } else if (fieldType === 'ByteBuffer') { %>
-    <%= fieldName %> blob,<% if (fieldTypeBlobContent !== 'text') { %>
-    <%= fieldNameUnderscored %>_content_type text,<% } } } %>
+    <%= fieldName %> blob,<% else if (fieldTypeBlobContent !== 'text') { %>
+    <%= fieldNameUnderscored %>_content_type text, <% } if (fieldType === 'LocalTime') { %>
+    <%= fieldName %> time without time zone,<% } } } %>
     PRIMARY KEY(id)
 );

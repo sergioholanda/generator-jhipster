@@ -24,6 +24,8 @@ import java.math.BigDecimal;
 import java.time.Instant;
 <%_ } if (fieldsContainLocalDate === true) { _%>
 import java.time.LocalDate;
+<%_ } if (fieldsContainLocalTime === true) { _%>
+import java.time.LocalTime;
 <%_ } if (fieldsContainZonedDateTime === true) { _%>
 import java.time.ZonedDateTime;
 <%_ } if (fieldsContainDuration === true) { _%>
@@ -73,7 +75,7 @@ public class <%= entityClass %>RowMapper implements BiFunction<Row, String, <%= 
         <%_ }); _%>
         <%_ regularEagerRelations.forEach(function(rel) { _%>
         entity.set<%= rel.relationshipNameCapitalized %>Id(converter.fromRow(row, prefix + "_<%= getColumnName(rel.relationshipName) %>_id", Long.class));
-        <%_ }); _%> 
+        <%_ }); _%>
         return entity;
     }
 

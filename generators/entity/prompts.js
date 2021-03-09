@@ -518,6 +518,10 @@ function askForField() {
                     name: 'LocalDate',
                 },
                 {
+                    value: 'LocalTime',
+                    name: 'LocalTime',
+                },
+                {
                     value: 'Instant',
                     name: 'Instant',
                 },
@@ -653,6 +657,10 @@ function askForField() {
                 {
                     value: 'LocalDate',
                     name: 'LocalDate (Warning: only compatible with Cassandra v3)',
+                },
+                {
+                    value: 'LocalTime',
+                    name: 'LocalTime (Warning: only compatible with Cassandra v3)',
                 },
                 {
                     value: 'Instant',

@@ -1022,7 +1022,7 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
                 tsType = 'number';
             } else if (fieldType === 'String' || fieldType === 'UUID') {
                 tsType = 'string';
-            } else if (['LocalDate', 'Instant', 'ZonedDateTime'].includes(fieldType)) {
+            } else if (['LocalDate', 'LocalTime', 'Instant', 'ZonedDateTime'].includes(fieldType)) {
                 tsType = customDateType;
             } else {
                 // (fieldType === 'byte[]' || fieldType === 'ByteBuffer') && fieldTypeBlobContent === 'any' || (fieldType === 'byte[]' || fieldType === 'ByteBuffer') && fieldTypeBlobContent === 'image' || fieldType === 'LocalDate'
@@ -1227,7 +1227,7 @@ module.exports = class JHipsterBasePrivateGenerator extends Generator {
      * @param {string} fieldType
      */
     getSpecificationBuilder(fieldType) {
-        if (['Integer', 'Long', 'Float', 'Double', 'BigDecimal', 'LocalDate', 'ZonedDateTime', 'Instant', 'Duration'].includes(fieldType)) {
+        if (['Integer', 'Long', 'Float', 'Double', 'BigDecimal', 'LocalDate', 'LocalTime', 'ZonedDateTime', 'Instant', 'Duration'].includes(fieldType)) {
             return 'buildRangeSpecification';
         }
         if (fieldType === 'String') {

@@ -32,11 +32,13 @@ const BASE_TEMPLATE_DATA = {
     searchEngine: false,
 
     fieldsContainDate: false,
+    fieldsContainTime: false,
     fieldsContainInstant: false,
     fieldsContainUUID: false,
     fieldsContainZonedDateTime: false,
     fieldsContainDuration: false,
     fieldsContainLocalDate: false,
+    fieldsContainLocalTime: false,
     fieldsContainBigDecimal: false,
     fieldsContainBlob: false,
     fieldsContainImageBlob: false,
@@ -186,6 +188,9 @@ function prepareEntityForTemplates(entityWithConfig, generator) {
         } else if (fieldType === 'LocalDate') {
             entityWithConfig.fieldsContainLocalDate = true;
             entityWithConfig.fieldsContainDate = true;
+        } else if (fieldType === 'LocalTime') {
+            entityWithConfig.fieldsContainLocalTime = true;
+            entityWithConfig.fieldsContainTime = true;
         } else if (fieldType === 'BigDecimal') {
             entityWithConfig.fieldsContainBigDecimal = true;
         } else if (fieldType === 'UUID') {

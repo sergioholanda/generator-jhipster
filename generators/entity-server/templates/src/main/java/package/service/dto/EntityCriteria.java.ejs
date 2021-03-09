@@ -25,6 +25,9 @@ import io.github.jhipster.service.filter.InstantFilter;
 <%_ if (fieldsContainLocalDate === true) { _%>
 import io.github.jhipster.service.filter.LocalDateFilter;
 <%_ } _%>
+<%_ if (fieldsContainLocalTime === true) { _%>
+import com.ponea.api.service.filter.LocalTimeFilter;
+<%_ } _%>
 <%_ if (fieldsContainUUID === true) { _%>
 import io.github.jhipster.service.filter.UUIDFilter;
 <%_ } _%>
@@ -43,7 +46,7 @@ if (isFilterableType(fieldType)) {
     if (field.fieldIsEnum == true) {
     filterType = fieldType + 'Filter';
     extraFilters[fieldType] = {type: filterType, superType: 'Filter<' + fieldType + '>', fieldType: fieldType};
-    } else if (['Duration', 'UUID', 'LocalDate', 'ZonedDateTime', 'Instant', 'String', 'Long', 'Integer', 'Float', 'Double', 'BigDecimal', 'Boolean'].includes(fieldType)) {
+    } else if (['Duration', 'UUID', 'LocalDate', 'LocalTime', 'ZonedDateTime', 'Instant', 'String', 'Long', 'Integer', 'Float', 'Double', 'BigDecimal', 'Boolean'].includes(fieldType)) {
     filterType = fieldType + 'Filter';
     } else {
     filterType = 'Filter<' + fieldType + '>';
