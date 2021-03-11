@@ -101,6 +101,8 @@ const generateFakeDataForField = (field, faker, changelogDate, type = 'csv') => 
     const isoDate = faker.date.recent(1, changelogDate).toISOString();
     if (field.fieldType === 'LocalDate') {
       data = isoDate.split('T')[0];
+    } else if (field.fieldType === 'LocalTime') {
+      data = isoDate.split('T')[1];
     } else {
       // Write the date without milliseconds so Java can parse it
       // See https://stackoverflow.com/a/34053802/150868

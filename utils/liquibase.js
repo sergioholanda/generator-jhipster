@@ -102,6 +102,10 @@ function parseLiquibaseColumnType(entity, field) {
     return 'date';
   }
 
+  if (fieldType === 'LocalTime') {
+    return 'time';
+  }
+
   if (fieldType === 'Instant') {
     // eslint-disable-next-line no-template-curly-in-string
     return '${datetimeType}';

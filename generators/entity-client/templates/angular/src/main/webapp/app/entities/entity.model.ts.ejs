@@ -22,7 +22,7 @@ const typeImports = generateEntityClientImports(relationships, dto);
 const defaultVariablesValues = generateEntityClientFieldDefaultValues(fields);
 const enumImports = generateEntityClientEnumImports(fields);
 %>
-<%_ if (fieldsContainInstant || fieldsContainZonedDateTime || fieldsContainLocalDate) { _%>
+<%_ if (fieldsContainInstant || fieldsContainZonedDateTime || fieldsContainLocalDate || fieldsContainLocalTime) { _%>
 import * as dayjs from 'dayjs';
 <%_ } _%>
 <%_ typeImports.forEach((importedPath, importedType) => { _%>

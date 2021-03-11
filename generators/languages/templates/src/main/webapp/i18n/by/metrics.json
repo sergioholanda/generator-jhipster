@@ -15,7 +15,7 @@
                 "title": "Аатокі",
                 "all": "Усе",
                 "runnable": "Актыўныя",
-                "timedwaiting": "Часовае чаканне",
+                 "timedwaiting": "Часовае чаканне",
                 "waiting": "Чаканне",
                 "blocked": "Заблакіраваныя",
                 "dump": {
